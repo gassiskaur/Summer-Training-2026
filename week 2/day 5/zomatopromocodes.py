@@ -12,23 +12,25 @@ promo_codes = {
 }
 
 amount_in_cart = int(input('Enter Amount: '))
-promo_code = input('Enter Promo Code: ')
+promo_code = input('Enter Promo Code: ').upper()
 
-print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
 print('You Entered Amount:', amount_in_cart)
 print('You Entered Promo Code:', promo_code)
-print('~~~~~~~~~~~~~~~~~~~~~~~~~~')
+
 
 if promo_code in promo_codes:
-    print('Promo Code Valid', promo_code)
+    print('Promo Code Valid:', promo_code)
+
     promo_code_rule = promo_codes[promo_code]
     print(promo_code_rule, type(promo_code_rule))
 
+    # Coupon has maximum discount
     if promo_code_rule['discount_upto'] > 0:
 
-        if amount_in_cart > promo_code_rule['minimum_amount']:
-            discount_calculated = amount_in_cart - (promo_code_rule['discount']*amount_in_cart) #computational statemenyts deleted once if is executed. 
-            print('discount_calculated: \u20b9', discount_calculated)
+        if amount_in_cart >= promo_code_rule['minimum_amount']:
+
+            discount_calculated = promo_code_rule['discount'] * amount_in_cart
+            print('Discount Calculated: ₹', discount_calculated)
 
             if discount_calculated > promo_code_rule['discount_upto']:
                 amount_to_pay = amount_in_cart - promo_code_rule['discount_upto']
@@ -36,15 +38,31 @@ if promo_code in promo_codes:
                 amount_to_pay = amount_in_cart - discount_calculated
 
             print('Promo Code applied successfully')
-            print('Please Pay: \u20b9', amount_to_pay)
+            print('Please Pay: ₹', amount_to_pay)
 
         else:
-            print('Promo Code cannot be applied. Enter items worth',  promo_code_rule['minimum_amount'] - amount_in_cart, 'more')
-    else:
-        if amount_in_cart > promo_code_rule['minimum_amount']:
-            discount_calculated = amount_in_cart - (promo_code_rule['discount']*amount_in_cart)
-            amount_to_pay = discount_calculated
+            print('Promo Code cannot be applied.')
+            print('Add items worth ₹',
+                  promo_code_rule['minimum_amount'] - amount_in_cart,
+                  'more.')
 
+    # Coupon has no maximum discount
+    else:
+
+        if amount_in_cart >= promo_code_rule['minimum_amount']:
+
+            discount_calculated = promo_code_rule['discount'] * amount_in_cart
+            amount_to_pay = amount_in_cart - discount_calculated
+
+            print('Discount Calculated: ₹', discount_calculated)
+            print('Promo Code applied successfully')
+            print('Please Pay: ₹', amount_to_pay)
+
+        else:
+            print('Promo Code cannot be applied.')
+            print('Add items worth ₹',
+                  promo_code_rule['minimum_amount'] - amount_in_cart,
+                  'more.')
 
 else:
-    print('Promo Code InValid')
+    print('Promo Code Invalid')
