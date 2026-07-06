@@ -14,7 +14,7 @@ song_list.add(element=Song(title= '2. 7 seconds',
             duration= 5.0,
             previous_song=None,
             next_song=None))
-
+#changes 
 song_list.add(element=Song(title= '3. no ordinary love', 
             artist= 'Sade',
             duration= 4.5,
