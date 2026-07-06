@@ -1,6 +1,14 @@
+'''def search(numbers, number_to_search):
+    for number in numbers:
+        print('[LOG] comparing:', number, 'with', number_to_search)
+        if number == number_to_search:
+            print('number found:', number)
+            break
+    else:
+        print('Number Not Found')
+'''
+
 # linear search using star and quargs 
-
-
 
 def search (*numbers, **number_to_search):
     for number in numbers:
