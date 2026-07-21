@@ -1,0 +1,4 @@
+this is a text file and i'll use python code to read it 
+
+
+lets see.........

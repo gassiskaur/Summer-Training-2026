@@ -1,0 +1,16 @@
+#decorators in pyhton 
+
+def logger(func):
+    def wrapper():
+        print('LOG: ORDER PROCESSING STARTED')
+        func()
+        print('LOG : ORDER PROCESSING FINISHED')
+
+    return wrapper 
+
+@logger 
+def place_orders():
+    print("Order placed successfully")
+
+
+place_orders()
